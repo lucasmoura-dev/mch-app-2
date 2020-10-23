@@ -106,7 +106,13 @@ const Home: React.FC = () => {
                 headerIcon="wifi-off"
                 title="178"
                 footer="Offline"
-                background="#E95567"
+                background="#E95567" 
+              />
+              <Card 
+                headerIcon="wifi-off"
+                title="Growatt"
+                footer="Offline"
+                background="#080230" 
               />
               <CityCard 
                 city="Ituiutaba"

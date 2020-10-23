@@ -9,6 +9,10 @@ export const Container = styled.View`
     background: white;
 `;
 
+export const HeaderContent = styled.View`
+    align-self: center;
+`;
+
 export const Content = styled.View<StyleProps>`
     background: ${p => p.background || '#00BE8A'};
     height: 90px;

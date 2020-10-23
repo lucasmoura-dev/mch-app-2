@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 export const CardHeader = styled.View`
     flex-direction: row;
     align-self: stretch;
-    justify-content: space-between;
+    justify-content: center;
 `;
 
 export const InfoText = styled.Text`

@@ -2,7 +2,7 @@ import React from 'react';
 import { Text } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { CardText, Container, Content } from './styles';
+import { HeaderContent, CardText, Container, Content } from './styles';
 
 type CardProps = {
   // header?: JSX.Element,
@@ -31,7 +31,9 @@ const Card: React.FC<CardProps> = ({ children, footer, headerIcon, title, backgr
   const renderSimpleCard = () => {
     return (
       <>
-        { headerIcon && renderHeaderIcon() }
+        <HeaderContent>
+          { headerIcon && renderHeaderIcon() }
+        </HeaderContent>
         <CardText color={color} isBold={true} size={18} >{ title }</CardText>
         { renderFooter() }
       </>
