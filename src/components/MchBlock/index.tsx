@@ -16,7 +16,7 @@ const MchBlock: React.FC<MchBlockProps> = ({ title, children }) => {
   return (
     <Container>
       <BlockHeader>
-        <Heading title="Inversores e Plantas" />
+        <Heading title={title} />
         <Text>Total</Text>
       </BlockHeader>
       <BlockContent>

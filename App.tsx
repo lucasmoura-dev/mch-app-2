@@ -10,6 +10,7 @@ import {
   useFonts,
 } from '@expo-google-fonts/roboto';
 
+import colors from './src/styles/colors';
 import Routes from './src/routes';
 
 export default function App() {
@@ -26,7 +27,7 @@ export default function App() {
   return (
     <>
       <Routes />
-      <StatusBar style="auto" />
+      <StatusBar style="light" backgroundColor={colors.primary} />
     </>
   );
 }

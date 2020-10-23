@@ -38,3 +38,8 @@ export const Container = styled.View`
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 `;
+
+export const CardsContent = styled.View`
+    margin-top: 14px;
+    flex-direction: row;
+`;

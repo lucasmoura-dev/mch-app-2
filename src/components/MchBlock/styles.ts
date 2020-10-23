@@ -9,7 +9,6 @@ export const Container = styled.View`
 export const BlockHeader = styled.View`
     flex-direction: row;
     justify-content: space-between;
-   
 `;
 
 export const BlockContent = styled.View`

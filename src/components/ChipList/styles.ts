@@ -11,7 +11,7 @@ export const Container = styled.View`
 
 export const ChipButton = styled.TouchableOpacity<ActiveProps>`
     background: ${ props => props.isActive ? colors.secondaryBackground : 'transparent' };
-    margin-right: 15px;
+    margin-right: 5px;
     height: 40px;
     padding: 0 20px;
     justify-content: center;
