@@ -2,6 +2,7 @@ import React from 'react';
 import { Dimensions, Text } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import Card from '../Card';
+import PlantCard from '../../components/PlantCard';
 
 import { Container } from './styles';
 const SLIDER_WIDTH = Dimensions.get('window').width;
@@ -10,17 +11,40 @@ type ItemProps = { item: Object, index: number };
 
 type CardListProps = {
   data: Array<any>,
-  renderCard: (item: ItemProps) => JSX.Element,
+  isStatusCard?: boolean,
 };
 
-const CardList: React.FC<CardListProps> = ({ data, renderCard }) => {
+const CardList: React.FC<CardListProps> = ({ data, isStatusCard }) => {
   let carousel = null;
 
-  /*const renderCard = ({item, index}) => {
+  const renderStatusCard = ({ item }) => {
+
     return (
-      <Card title={item.title} background="#1F211D" color="#FFFFFF" />
+      <Card 
+        headerIcon="wifi"
+        title={item.title}
+        footer={item.footer}
+        background={item.background}
+      />
     );
-  }*/
+  };
+
+  const renderPlantCard = ({ item }) => {
+
+    return (
+      <PlantCard 
+        title={item.title}
+        background={item.background}
+        plants={item.plants}
+        energy={{ value: item.energyValue, unit: item.energyUnit }}
+      />
+    );
+  };
+
+  const renderCard = (data) => {
+    let render = isStatusCard ? renderStatusCard : renderPlantCard;
+    return render(data);
+  }
 
   return (
     <Carousel
