@@ -16,3 +16,12 @@ export const BlockContent = styled.View`
     margin-top: 10px;
     padding-left: 0px;
 `;
+
+export const HeaderSecondaryInfo = styled.View`
+    flex-direction: row;
+    align-items: center;
+`;
+
+export const HeaderSecondaryInfoText = styled.Text`
+    color: #9791A2;
+`;

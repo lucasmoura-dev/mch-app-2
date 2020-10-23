@@ -1,7 +1,8 @@
 import React from 'react';
 import { Text, Image } from 'react-native';
 
-import { CardHeader, WeatherInfo, WeatherUnit, InfoText, PlantsInfo, City, Energy, PlantAmount, WeatherTemperature } from './styles';
+import { CardHeader, FirstInfo, Title, Energy, InfoValue } from './styles';
+// import { CardHeader, FirstInfo, Title, Energy, InfoValue } from './styles';
 
 import Card from '../Card';
 
@@ -12,23 +13,24 @@ type Weather = { type: string, temperature: number };
 type Energy = { value: number, unit: string };
 
 type CardProps = {
-  city: string,
+  title: string,
   plants: number,
-  weather?: Weather,
+  // weather?: Weather,
   energy: Energy,
+  background?: string,
 };
 
 
 
-const CityCard: React.FC<CardProps> = ({ city, plants, weather, energy }) => {
+const PlantCard: React.FC<CardProps> = ({ plants, energy, title, ...props }) => {
 
   return (
-    <Card background="#1F211D" alignment="center">
+    <Card background="#1F211D" alignment="center" {...props} >
       <CardHeader>
-        <PlantsInfo>
+        <FirstInfo>
           <PlantsIcon color="#FFFFFF" width={20} />
-          <PlantAmount>{ plants }</PlantAmount>
-        </PlantsInfo>
+          <InfoValue>{ plants }</InfoValue>
+        </FirstInfo>
         
         {/* <WeatherInfo>
           <PlantsIcon color="#FFFFFF" width={18} />
@@ -37,11 +39,11 @@ const CityCard: React.FC<CardProps> = ({ city, plants, weather, energy }) => {
         </WeatherInfo> */}
       </CardHeader>
       
-      <City>{ city }</City>
+      <Title>{ title }</Title>
       
       <Energy>{ energy.value + ' ' + energy.unit }</Energy>
     </Card>
   );
 };
 
-export default CityCard;
+export default PlantCard;

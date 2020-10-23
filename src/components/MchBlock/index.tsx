@@ -1,23 +1,31 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { View, Text } from 'react-native';
 
 import { 
-  Container, BlockHeader, BlockContent, 
+  Container, BlockHeader, BlockContent, HeaderSecondaryInfo, HeaderSecondaryInfoText, 
 } from './styles';
 
 import Heading from '../../components/Heading';
 
 type MchBlockProps = {
   title: string,
+  total?: number
 }
 
-const MchBlock: React.FC<MchBlockProps> = ({ title, children }) => {
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+const MchBlock: React.FC<MchBlockProps> = ({ title, children, total }) => {
 
   return (
     <Container>
       <BlockHeader>
         <Heading title={title} />
-        <Text>Total</Text>
+        { total && 
+          <HeaderSecondaryInfo>
+            <HeaderSecondaryInfoText>Total: { total }</HeaderSecondaryInfoText>
+            <MaterialCommunityIcons name="chevron-right" size={24} color="#9791A2" />
+          </HeaderSecondaryInfo>
+        }
       </BlockHeader>
       <BlockContent>
         { children }

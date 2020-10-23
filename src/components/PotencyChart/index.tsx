@@ -39,8 +39,8 @@ const PotencyChart: React.FC = () => {
           <LottieView source={Loading} autoPlay loop={true} speed={0.8}/>
           
           <Label>Hoje</Label>
-          <Value>298,4</Value>
-          <Unit>kWh</Unit>
+          <Value>109,4</Value>
+          <Unit>mWh</Unit>
           
         </InnerCircle>
       </OuterCircle>
