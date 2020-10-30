@@ -2,11 +2,10 @@ import styled from 'styled-components/native';
 import colors from '../../styles/colors';
 
 export const Container = styled.View`
-    flex: 1;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-
+    /* flex: 1; */
+    /* flex-direction: row; */
+    /* align-items: center; */
+    /* justify-content: flex-start; */
 `;
 
 export const SvgWrapper = styled.View`
@@ -21,8 +20,8 @@ export const OuterCircle = styled.View`
     justify-content: center;
     align-items: center;
 
-    margin-left: 10px;
-    margin-top: 0px;
+    /* margin-left: 10px; */
+    /* margin-top: 0px; */
 `;
 
 export const InnerCircle = styled.View`

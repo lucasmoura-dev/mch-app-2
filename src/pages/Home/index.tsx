@@ -54,7 +54,7 @@ const Home: React.FC = () => {
   return (
     
     <Wrapper>
-        <MchHeader message="Boa tarde" username="Jéssica"/>
+        <MchHeader message="Olá" username="Jéssica"/>
         
         <Container>
           <MchBlock title="Inversores e Plantas" total={181} >

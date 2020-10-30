@@ -7,7 +7,6 @@ import PlantCard from '../../components/PlantCard';
 import { Container } from './styles';
 const SLIDER_WIDTH = Dimensions.get('window').width;
 
-type ItemProps = { item: Object, index: number };
 
 type CardListProps = {
   data: Array<any>,
@@ -17,7 +16,7 @@ type CardListProps = {
 const CardList: React.FC<CardListProps> = ({ data, isStatusCard }) => {
   let carousel = null;
 
-  const renderStatusCard = ({ item }) => {
+  const renderStatusCard = ({ item }: any) => {
 
     return (
       <Card 
@@ -29,7 +28,7 @@ const CardList: React.FC<CardListProps> = ({ data, isStatusCard }) => {
     );
   };
 
-  const renderPlantCard = ({ item }) => {
+  const renderPlantCard = ({ item }: any) => {
 
     return (
       <PlantCard 
@@ -41,7 +40,7 @@ const CardList: React.FC<CardListProps> = ({ data, isStatusCard }) => {
     );
   };
 
-  const renderCard = (data) => {
+  const renderCard = (data: any) => {
     let render = isStatusCard ? renderStatusCard : renderPlantCard;
     return render(data);
   }

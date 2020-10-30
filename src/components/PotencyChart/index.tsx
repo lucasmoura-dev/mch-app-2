@@ -23,13 +23,6 @@ import {
 const PotencyChart: React.FC = () => {
   return (
     <Container>
-      {/* <SvgWrapper>
-        <SvgXml xml={HalfCircle} />
-      </SvgWrapper> */}
-
-
-      <SvgWrapper> 
-      </SvgWrapper>
 
       <OuterCircle>
         <LottieView source={BigLoading} autoPlay loop={true} speed={0.2}/> 
