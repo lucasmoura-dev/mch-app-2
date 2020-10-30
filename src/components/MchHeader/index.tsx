@@ -1,18 +1,19 @@
 import React from 'react';
-import { Text } from 'react-native';
 
 import { 
   Container, 
   Background, 
   HeaderMessage,
   ChartContent,
-  InfoContent,
   InfoLabel,
   InfoValue,
   MiniCard,
   MiniCardInfos,
   TotalIcon,
-  EconomyIcon
+  EconomyIcon,
+  HeaderMessageContent,
+  HeaderBody,
+  MiniCardsContent
 } from './styles';
 
 import NatureBackground from '../../images/path4349.png';
@@ -33,35 +34,41 @@ const MchHeader: React.FC<HeaderProps> = ({ message, username }) => {
         source={NatureBackground}
         imageStyle={{ opacity: 0.1, resizeMode: 'stretch' }}
       >
-        <ChartContent>
-          <PotencyChart />
-        </ChartContent>
-        <InfoContent>
+        <HeaderMessageContent>
           <HeaderMessage>
-              { message }, { username }
+                { message }, { username }
           </HeaderMessage>
-          <MiniCard>
-            <TotalIcon>
-              <ChartIcon color="#FFFFFF" width={20} height={20} />
-            </TotalIcon>
-            <MiniCardInfos>
-              <InfoLabel>Total (kWh)</InfoLabel>
-              <InfoValue>9208</InfoValue>
-            </MiniCardInfos>
-          </MiniCard>
+        </HeaderMessageContent>
+        <HeaderBody>
+          <ChartContent>
+            <PotencyChart />
+          </ChartContent>
 
-          <MiniCard>
-            <EconomyIcon>
-              <PiggyBank color="#FFFFFF"/>
-            </EconomyIcon>
-            <MiniCardInfos>
-              <InfoLabel>Economia</InfoLabel>
-              <InfoValue>R$ 8979,59</InfoValue>
-            </MiniCardInfos>
-          </MiniCard>
+          <MiniCardsContent>
+            <MiniCard>
+              <TotalIcon>
+                <ChartIcon color="#FFFFFF" width={20} height={20} />
+              </TotalIcon>
+              <MiniCardInfos>
+                <InfoLabel>Total (kWh)</InfoLabel>
+                <InfoValue>9208</InfoValue>
+              </MiniCardInfos>
+            </MiniCard>
+
+            <MiniCard>
+              <EconomyIcon>
+                <PiggyBank color="#FFFFFF"/>
+              </EconomyIcon>
+              <MiniCardInfos>
+                <InfoLabel>Economia</InfoLabel>
+                <InfoValue>R$ 8979,59</InfoValue>
+              </MiniCardInfos>
+            </MiniCard>
+          </MiniCardsContent>
+
           
           
-        </InfoContent>
+        </HeaderBody>
       </Background> 
     </Container>
   );

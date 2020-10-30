@@ -12,20 +12,40 @@ export const Background = styled.ImageBackground`
     flex: 1;
     opacity: 1;
 
-    flex-direction: row;
+    /* flex-direction: row; */
     padding-right: 15px;
     padding-left: 15px;
+    
+    flex-direction: column;
+`;
+
+export const HeaderMessageContent = styled.View`
+    align-items: flex-end;
+`;
+
+export const HeaderMessage = styled.Text`
+    color: ${colors.white};
+    font-family: roboto_500;
+    font-size: 22px;
+`;
+
+export const HeaderBody = styled.View`
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 `;
 
 export const ChartContent = styled.View`
-    flex: 1;
     flex-direction: row;
     justify-content: flex-start;
-    align-items: center;
 `;
 
-export const InfoContent = styled.View`
-    
+export const MiniCardsContent = styled.View`
+    flex-direction: column;
+    justify-content: space-between;
+    height: 130px;
+    padding: 10px 0;
 `;
 
 export const MiniCard = styled.View`
@@ -36,8 +56,6 @@ export const MiniCard = styled.View`
     padding: 5px;
     width: 160px;
     border-radius: 5px;
-
-    margin-bottom: 20px;
 `;
 
 export const MiniCardInfos = styled.View`
@@ -76,12 +94,3 @@ export const InfoValue = styled.Text`
     font-size: 16px;
 `;
 
-export const HeaderMessage = styled.Text`
-    color: ${colors.white};
-    font-family: roboto_500;
-    font-size: 22px;
-    align-self: flex-end;
-    /* padding-right: 15px; */
-
-    margin-bottom: 40px;
-`;
