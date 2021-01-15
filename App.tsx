@@ -12,6 +12,8 @@ import {
   useFonts,
 } from '@expo-google-fonts/roboto';
 
+import colors from './src/styles/colors';
+
 export default function App() {
   let [fontsLoaded] = useFonts({
     roboto_400: Roboto_400Regular,
@@ -26,7 +28,7 @@ export default function App() {
   return (
     <>
       <Routes />
-      <StatusBar style="light" />
+      <StatusBar style="light" backgroundColor={colors.primary}  />
     </>
   );
 }
