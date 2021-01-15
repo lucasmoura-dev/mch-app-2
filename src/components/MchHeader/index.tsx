@@ -19,6 +19,7 @@ import {
 import NatureBackground from '../../images/path4349.png';
 import PotencyChart from '../PotencyChart';
 
+
 import ChartIcon from '../../images/svg/icon_chart';
 import PiggyBank from '../../images/svg/icon_piggy_bank';
 
@@ -51,7 +52,7 @@ const MchHeader: React.FC<HeaderProps> = ({ message, username }) => {
               </TotalIcon>
               <MiniCardInfos>
                 <InfoLabel>Total (kWh)</InfoLabel>
-                <InfoValue>9208</InfoValue>
+                <InfoValue>75608</InfoValue>
               </MiniCardInfos>
             </MiniCard>
 
@@ -61,7 +62,7 @@ const MchHeader: React.FC<HeaderProps> = ({ message, username }) => {
               </EconomyIcon>
               <MiniCardInfos>
                 <InfoLabel>Economia</InfoLabel>
-                <InfoValue>R$ 8979,59</InfoValue>
+                <InfoValue>R$ 68.047,20</InfoValue>
               </MiniCardInfos>
             </MiniCard>
           </MiniCardsContent>
