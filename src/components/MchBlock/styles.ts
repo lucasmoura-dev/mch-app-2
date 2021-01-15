@@ -3,7 +3,7 @@ import colors from '../../styles/colors';
 
 export const Container = styled.View`
     padding: 10px 0 20px;
-    
+
 `;
 
 export const BlockHeader = styled.View`

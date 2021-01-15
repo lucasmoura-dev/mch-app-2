@@ -15,7 +15,7 @@ export const Background = styled.ImageBackground`
     /* flex-direction: row; */
     padding-right: 15px;
     padding-left: 15px;
-    
+
     flex-direction: column;
 `;
 
@@ -59,7 +59,7 @@ export const MiniCard = styled.View`
 `;
 
 export const MiniCardInfos = styled.View`
-    
+
 `;
 
 export const TotalIcon = styled.View`

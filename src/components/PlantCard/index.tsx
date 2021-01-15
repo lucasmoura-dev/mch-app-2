@@ -31,16 +31,16 @@ const PlantCard: React.FC<CardProps> = ({ plants, energy, title, ...props }) => 
           <PlantsIcon color="#FFFFFF" width={20} />
           <InfoValue>{ plants }</InfoValue>
         </FirstInfo>
-        
+
         {/* <WeatherInfo>
           <PlantsIcon color="#FFFFFF" width={18} />
           <WeatherTemperature>{ weather ? weather.temperature : '32' }</WeatherTemperature>
           <WeatherUnit>°C</WeatherUnit>
         </WeatherInfo> */}
       </CardHeader>
-      
+
       <Title>{ title }</Title>
-      
+
       <Energy>{ energy.value + ' ' + energy.unit }</Energy>
     </Card>
   );

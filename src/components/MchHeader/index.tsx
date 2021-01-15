@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { 
-  Container, 
-  Background, 
+import {
+  Container,
+  Background,
   HeaderMessage,
   ChartContent,
   InfoLabel,
@@ -31,7 +31,7 @@ type HeaderProps = {
 const MchHeader: React.FC<HeaderProps> = ({ message, username }) => {
   return (
     <Container>
-      <Background 
+      <Background
         source={NatureBackground}
         imageStyle={{ opacity: 0.1, resizeMode: 'stretch' }}
       >
@@ -67,10 +67,10 @@ const MchHeader: React.FC<HeaderProps> = ({ message, username }) => {
             </MiniCard>
           </MiniCardsContent>
 
-          
-          
+
+
         </HeaderBody>
-      </Background> 
+      </Background>
     </Container>
   );
 };

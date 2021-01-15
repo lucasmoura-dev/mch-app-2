@@ -1,7 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 
-import { AppLoading } from 'expo';
+import AppLoading from 'expo-app-loading';
+
+import Routes from './src/routes';
 
 import {
   Roboto_400Regular,
@@ -10,16 +12,13 @@ import {
   useFonts,
 } from '@expo-google-fonts/roboto';
 
-import colors from './src/styles/colors';
-import Routes from './src/routes';
-
 export default function App() {
   let [fontsLoaded] = useFonts({
     roboto_400: Roboto_400Regular,
     roboto_500: Roboto_500Medium,
     roboto_700: Roboto_700Bold,
   });
-  
+
   if (!fontsLoaded) {
     return <AppLoading />;
   }
@@ -27,7 +26,7 @@ export default function App() {
   return (
     <>
       <Routes />
-      <StatusBar style="light" backgroundColor={colors.primary} />
+      <StatusBar style="light" />
     </>
   );
 }

@@ -19,7 +19,7 @@ const CardList: React.FC<CardListProps> = ({ data, isStatusCard }) => {
   const renderStatusCard = ({ item }: any) => {
 
     return (
-      <Card 
+      <Card
         headerIcon="wifi"
         title={item.title}
         footer={item.footer}
@@ -31,7 +31,7 @@ const CardList: React.FC<CardListProps> = ({ data, isStatusCard }) => {
   const renderPlantCard = ({ item }: any) => {
 
     return (
-      <PlantCard 
+      <PlantCard
         title={item.title}
         background={item.background}
         plants={item.plants}
