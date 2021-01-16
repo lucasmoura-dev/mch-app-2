@@ -1,5 +1,7 @@
 import styled from 'styled-components/native';
 
+import colors from '../../styles/colors';
+
 interface RowContentProps {
   isAlternativeColor: boolean
   isSelected?: boolean
@@ -41,8 +43,11 @@ export const HeaderColumn = styled.View<HeaderColumnProps>`
 export const HeaderText = styled.Text`
     /* text-align: center; */
     font-weight: bold;
-    color: #0D134E;
+    /* color: #0D134E; */
+    color: ${colors.black}
     margin-right: 5px;
+    font-family: roboto_400;
+    font-size: 16px;
 `;
 
 export const TableContent = styled.View`
@@ -60,6 +65,11 @@ export const RowContent = styled.View<RowContentProps>`
     border-radius: 6px;
 `;
 
+export const TableText = styled.Text`
+  font-family: roboto_400;
+  font-size: 16px;
+`;
+
 type ColumnProps = {
   key?: number | string,
   width?: number,
@@ -72,4 +82,6 @@ export const Column = styled.View<ColumnProps>`
     font-weight: 100;
     justify-content: center;
     align-items: center;
+
+
 `;

@@ -16,6 +16,7 @@ import {
   ColumnContainer,
   RowContent,
   Column,
+  TableText,
 } from './styles';
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -115,7 +116,7 @@ class RowColumn extends PureComponent<RowColumnProps, any> {
   render() {
     return (
       <Column key={'col' + this.props.colIndex} width={this.props.width}>
-        <Text numberOfLines={1}>{this.props.colData}</Text>
+        <TableText numberOfLines={1}>{this.props.colData}</TableText>
       </Column>
     );
   }
@@ -159,6 +160,7 @@ type DataTableProps = {
   onEndReached: () => any,
   onEndReachedThreshold: number,
   onPressHeader: (columnData: HeaderDataInterface, direction: string) => any
+  renderFooter?: any,
 }
 
 const DataTable = ({
@@ -167,12 +169,13 @@ const DataTable = ({
   onEndReached,
   onEndReachedThreshold,
   onPressHeader,
+  renderFooter,
 }: DataTableProps) => {
   data = data || [];
 
   return (
     <Container>
-      <ScrollView horizontal={true} showsHorizontalScrollIndicator={true}>
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         <View>
           <Header headerData={headerData} onPressHeader={onPressHeader} />
           <FlatList
@@ -183,6 +186,7 @@ const DataTable = ({
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={{ paddingBottom: 50 }}
+            ListFooterComponent={renderFooter}
             renderItem={({ item: rowData, index }) => (
               <Row headerData={headerData} rowData={rowData} rowIndex={index} />
             )}

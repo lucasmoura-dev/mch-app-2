@@ -14,6 +14,7 @@ import {
 
 import colors from './src/styles/colors';
 
+
 export default function App() {
   let [fontsLoaded] = useFonts({
     roboto_400: Roboto_400Regular,

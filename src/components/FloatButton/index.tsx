@@ -14,6 +14,7 @@ const FloatButton: React.FC<FloatButton> = ({ onPress, icon }) => {
     <Button
       icon={icon}
       onPress={onPress}
+      color='#fff'
     />
   );
 };

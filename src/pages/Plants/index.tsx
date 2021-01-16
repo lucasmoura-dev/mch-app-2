@@ -9,7 +9,7 @@ import { DateTime, Settings } from 'luxon';
 import api from '../../services/api';
 import locale from '../../services/locale';
 
-import { ToastAndroid } from 'react-native';
+import { ToastAndroid, View, ActivityIndicator } from 'react-native';
 
 import DataTable from '../../components/DataTable';
 import StatusIcon from '../../components/StatusIcon';
@@ -18,6 +18,8 @@ import SearchInput from '../../components/SearchInput';
 import ScrollableModal from '../../components/ScrollableModal';
 
 import { Divider, RadioButton, Searchbar } from 'react-native-paper';
+
+import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 
 import {
   Container,
@@ -40,13 +42,13 @@ const Plants: React.FC = () => {
   Settings.defaultLocale = 'pt';
 
   interface ISearchParams {
-    page?: number,
-    sort?: string,
-    limit?: number,
-    brand?: string,
-    name?: string,
-    city?: string,
-    online?: boolean | number | null,
+    page?: number;
+    sort?: string;
+    limit?: number;
+    brand?: string;
+    name?: string;
+    city?: string;
+    online?: boolean | number | null;
   }
 
   const [searchParams, setSearchParams] = useState<ISearchParams>({
@@ -76,11 +78,11 @@ const Plants: React.FC = () => {
     { id: 'elapsedTime', text: 'Atualização', width: 100 },
   ];
 
-  useFocusEffect(
+  /*useFocusEffect(
     React.useCallback(() => {
       loadPlants();
     }, []),
-  );
+  );*/
 
   // Hook: atualizou os filtros
   /*useEffect(() => {
@@ -92,27 +94,26 @@ const Plants: React.FC = () => {
 
   useEffect(() => {
     if (searchParams.page === 1) {
+      console.log('teste');
       loadPlants(true);
     }
   }, [searchParams.page]);
 
   type PlantDataInterface = {
-    name: string,
-    powerEfficiency?: number,
-    power_current: number,
-    power_total: number,
-    updated_at: string,
-    online: number | boolean,
-    generation_today: number,
-    generation_total: number,
-    inverter_brand: string
-  }
+    name: string;
+    powerEfficiency?: number;
+    power_current: number;
+    power_total: number;
+    updated_at: string;
+    online: number | boolean;
+    generation_today: number;
+    generation_total: number;
+    inverter_brand: string;
+  };
 
   function onPressTableHeader(columnData, currentOrderDir) {
     const sort = `${columnData.id}:${currentOrderDir}`;
     setSearchParams({ ...searchParams, sort, page: 1 });
-
-    console.log('novoSortBy', searchParams.sort);
   }
 
   function toggleFilterModal() {
@@ -134,12 +135,12 @@ const Plants: React.FC = () => {
 
     setLoading(true);
 
-    ToastAndroid.show('Carregando...', ToastAndroid.SHORT);
+    // ToastAndroid.show('Carregando...', ToastAndroid.SHORT);
 
     let response: any = {};
 
     try {
-      console.log(searchParams);
+      // console.log(searchParams);
       response = await api.get('plants', { params: searchParams });
     } catch (error) {
       console.log(error);
@@ -180,9 +181,9 @@ const Plants: React.FC = () => {
       plantsRows.push(rowData);
     });
 
-    console.log([...plantsRows][0]);
+    // console.log([...plantsRows][0]);
 
-    console.log('Total de páginas: ', pages);
+    // console.log('Total de páginas: ', pages);
 
     setTotalPLants(total);
 
@@ -223,6 +224,25 @@ const Plants: React.FC = () => {
     );
   };
 
+  const renderDataTableFooter = () => {
+    // if (!loading) return null;
+    return (
+      <SkeletonPlaceholder speed={800} backgroundColor="#f2f5f7" highlightColor="#ededed" >
+        <View style={{ flexDirection: 'row'}}>
+          <View >
+            {
+              [...Array(13)].map((e, i) => (
+                <View key={String(i)}
+                style={{ marginTop: 6, width: 930, height: 40, borderRadius: 4 }}
+              />
+              ))
+            }
+          </View>
+        </View>
+      </SkeletonPlaceholder>
+    );
+  };
+
   return (
     <Container>
       {/* <Text>Exibindo { plants.length } planta(s). Página { searchParams.page } de { totalPages }</Text> */}
@@ -234,6 +254,7 @@ const Plants: React.FC = () => {
         data={plants}
         onEndReached={() => loadPlants(false)}
         onPressHeader={onPressTableHeader}
+        renderFooter={renderDataTableFooter}
       />
 
       <ScrollableModal
