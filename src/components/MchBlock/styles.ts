@@ -17,7 +17,7 @@ export const BlockContent = styled.View`
     padding-left: 0px;
 `;
 
-export const HeaderSecondaryInfo = styled.View`
+export const HeaderSecondaryInfo = styled.TouchableOpacity`
     flex-direction: row;
     align-items: center;
 `;

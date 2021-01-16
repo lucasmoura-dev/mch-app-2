@@ -9,19 +9,20 @@ import Heading from '../../components/Heading';
 
 type MchBlockProps = {
   title: string,
-  total?: number
+  total?: number,
+  onPressTotal?: any
 }
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const MchBlock: React.FC<MchBlockProps> = ({ title, children, total }) => {
+const MchBlock: React.FC<MchBlockProps> = ({ title, children, total, onPressTotal }) => {
 
   return (
     <Container>
       <BlockHeader>
         <Heading title={title} />
         { total &&
-          <HeaderSecondaryInfo>
+          <HeaderSecondaryInfo onPress={onPressTotal}>
             <HeaderSecondaryInfoText>Total: { total }</HeaderSecondaryInfoText>
             <MaterialCommunityIcons name="chevron-right" size={24} color="#9791A2" />
           </HeaderSecondaryInfo>

@@ -2,16 +2,24 @@ import React, { useContext, useState } from 'react';
 
 import { Text, View } from 'react-native';
 
+import { DrawerScreenProps } from '@react-navigation/drawer';
+
+type RootStackParamList = {
+  Home: undefined,
+  Plants: { brand?: string, city?: string, online?: number | boolean } | undefined,
+};
+
+type ScreenProps = DrawerScreenProps<RootStackParamList, 'Home'>;
+
 import {  CardsContent, Wrapper, Container } from './styles';
 
-import { ThemeContext } from 'react-native-elements';
 import MchHeader from '../../components/MchHeader';
 import MchBlock from '../../components/MchBlock';
 import ChipList from '../../components/ChipList';
 import CardList from '../../components/CardList';
 
-const Home: React.FC = () => {
-  const { theme } = useContext(ThemeContext);
+
+const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
   const [selected, setSelected] = useState('status');
 
   const buttons = [
@@ -46,11 +54,15 @@ const Home: React.FC = () => {
     { title: 'SMA', background: '#000000', plants: 15, energyValue: 6, energyUnit: 'mWh' },
   ];
 
+  const goToPlants = () => {
+    navigation.navigate('Plants');
+  }
+
   return (
     <Wrapper>
       <MchHeader message="Olá" username="Jéssica"/>
       <Container>
-        <MchBlock title="Inversores e Plantas" total={181} >
+        <MchBlock title="Inversores e Plantas" total={181} onPressTotal={() => goToPlants()} >
             <ChipList data={buttons} selectCallback={onChangeIndex} />
 
             <CardsContent>
