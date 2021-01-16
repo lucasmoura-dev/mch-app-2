@@ -21,7 +21,7 @@ const CardList: React.FC<CardListProps> = ({ data, isStatusCard, onPressCard }) 
 
     return (
       <Card
-        headerIcon="wifi"
+        headerIcon={item.icon}
         title={item.title}
         footer={item.footer}
         background={item.background}

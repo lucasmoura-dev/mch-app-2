@@ -68,6 +68,7 @@ const Plants: React.FC<ScreenProps> = ({ route, navigation }) => {
     name: '',
     city: '',
     online: null,
+    ...route.params.searchParams
   });
 
   const [plants, setPlants] = useState<any>([]);
@@ -94,12 +95,14 @@ const Plants: React.FC<ScreenProps> = ({ route, navigation }) => {
   );*/
 
   // Hook: atualizou os filtros
-  useEffect(() => {
+  /*useEffect(() => {
     if (route.params?.searchParams) {
       console.log('Filtro atualizado!');
       console.log(route.params.searchParams);
+      setSearchParams({ ...route.params.searchParams,  page: 1 });
+      loadPlants(true);
     }
-  }, [route.params?.searchParams]);
+  }, [route.params?.searchParams]);*/
 
   useEffect(() => {
     if (searchParams.page === 1) {

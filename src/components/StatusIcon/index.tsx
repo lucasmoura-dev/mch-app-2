@@ -14,7 +14,7 @@ const StatusIcon: React.FC<StatusIcon> = ({ isOnline }) => {
   return (
     <Container>
       <MaterialCommunityIcons
-        name={isOnline ? 'check-circle' : 'close-circle'}
+        name={isOnline ? 'wifi' : 'wifi-off'}
         color={isOnline ? '#00be8a' : '#e95467'}
         size={22}
       />
