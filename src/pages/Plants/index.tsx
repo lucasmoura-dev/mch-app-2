@@ -17,6 +17,15 @@ import FloatButton from '../../components/FloatButton';
 import SearchInput from '../../components/SearchInput';
 import ScrollableModal from '../../components/ScrollableModal';
 
+import { DrawerScreenProps } from '@react-navigation/drawer';
+
+type RootStackParamList = {
+  Home: undefined,
+  Plants: { searchParams: { brand?: string, city?: string, online?: number | boolean } } | undefined,
+};
+
+type ScreenProps = DrawerScreenProps<RootStackParamList, 'Plants'>;
+
 import { Divider, RadioButton, Searchbar } from 'react-native-paper';
 
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
@@ -38,7 +47,7 @@ import {
   ButtonTextReset,
 } from './styles';
 
-const Plants: React.FC = () => {
+const Plants: React.FC<ScreenProps> = ({ route, navigation }) => {
   Settings.defaultLocale = 'pt';
 
   interface ISearchParams {
@@ -54,7 +63,7 @@ const Plants: React.FC = () => {
   const [searchParams, setSearchParams] = useState<ISearchParams>({
     page: 1,
     sort: 'name:asc',
-    limit: 25,
+    limit: 15,
     brand: '',
     name: '',
     city: '',
@@ -85,12 +94,12 @@ const Plants: React.FC = () => {
   );*/
 
   // Hook: atualizou os filtros
-  /*useEffect(() => {
-    if (route.params?.filter) {
+  useEffect(() => {
+    if (route.params?.searchParams) {
       console.log('Filtro atualizado!');
-      console.log(route.params.filter);
+      console.log(route.params.searchParams);
     }
-  }, [route.params?.filter]);*/
+  }, [route.params?.searchParams]);
 
   useEffect(() => {
     if (searchParams.page === 1) {
@@ -121,7 +130,7 @@ const Plants: React.FC = () => {
   }
 
   async function loadPlants(canReset = false) {
-    const limit = 25;
+    const limit = 20;
     if (loading) {
       return;
     }
@@ -225,7 +234,7 @@ const Plants: React.FC = () => {
   };
 
   const renderDataTableFooter = () => {
-    // if (!loading) return null;
+    if (!loading) return null;
     return (
       <SkeletonPlaceholder speed={800} backgroundColor="#f2f5f7" highlightColor="#ededed" >
         <View style={{ flexDirection: 'row'}}>

@@ -11,9 +11,10 @@ const SLIDER_WIDTH = Dimensions.get('window').width;
 type CardListProps = {
   data: Array<any>,
   isStatusCard?: boolean,
+  onPressCard?: any,
 };
 
-const CardList: React.FC<CardListProps> = ({ data, isStatusCard }) => {
+const CardList: React.FC<CardListProps> = ({ data, isStatusCard, onPressCard }) => {
   let carousel = null;
 
   const renderStatusCard = ({ item }: any) => {
@@ -24,6 +25,8 @@ const CardList: React.FC<CardListProps> = ({ data, isStatusCard }) => {
         title={item.title}
         footer={item.footer}
         background={item.background}
+        name={item.name}
+        onPress={onPressCard}
       />
     );
   };
@@ -36,6 +39,8 @@ const CardList: React.FC<CardListProps> = ({ data, isStatusCard }) => {
         background={item.background}
         plants={item.plants}
         energy={{ value: item.energyValue, unit: item.energyUnit }}
+        name={item.name}
+        onPress={onPressCard}
       />
     );
   };

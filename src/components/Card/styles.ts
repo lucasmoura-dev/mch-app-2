@@ -13,7 +13,7 @@ export const HeaderContent = styled.View`
     align-self: center;
 `;
 
-export const Content = styled.View<StyleProps>`
+export const Content = styled.TouchableOpacity<StyleProps>`
     background: ${p => p.background || '#00BE8A'};
     height: 90px;
     border-radius: 12px;

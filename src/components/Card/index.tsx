@@ -12,9 +12,11 @@ type CardProps = {
   background?: string,
   color?: string,
   alignment?: string,
+  onPress?: any,
+  name?: string,
 };
 
-const Card: React.FC<CardProps> = ({ children, footer, headerIcon, title, background, color, alignment }) => {
+const Card: React.FC<CardProps> = ({ children, footer, headerIcon, title, background, color, alignment, name, onPress }) => {
 
   const renderHeaderIcon = () => {
     if (typeof headerIcon === 'string') {
@@ -42,7 +44,7 @@ const Card: React.FC<CardProps> = ({ children, footer, headerIcon, title, backgr
 
   return (
     <Container>
-      <Content background={background} alignment={alignment} >
+      <Content background={background} alignment={alignment}  onPress={() => onPress && onPress(name)} >
         { children ? children : renderSimpleCard() }
       </Content>
     </Container>

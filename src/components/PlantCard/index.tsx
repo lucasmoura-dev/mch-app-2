@@ -18,14 +18,16 @@ type CardProps = {
   // weather?: Weather,
   energy: Energy,
   background?: string,
+  onPress?: any,
+  name?: string,
 };
 
 
 
-const PlantCard: React.FC<CardProps> = ({ plants, energy, title, ...props }) => {
+const PlantCard: React.FC<CardProps> = ({ plants, energy, title, onPress, name, ...props }) => {
 
   return (
-    <Card background="#1F211D" alignment="center" {...props} >
+    <Card background="#1F211D" alignment="center" {...props} onPress={onPress} name={name}>
       <CardHeader>
         <FirstInfo>
           <PlantsIcon color="#FFFFFF" width={20} />
