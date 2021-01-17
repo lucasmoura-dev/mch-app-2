@@ -54,7 +54,7 @@ export const MiniCard = styled.View`
     flex-direction: row;
     align-items: center;
     padding: 5px;
-    width: 160px;
+    width: 180px;
     border-radius: 5px;
 `;
 

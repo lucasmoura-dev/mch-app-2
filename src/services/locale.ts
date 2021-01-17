@@ -5,19 +5,32 @@ const capitalize = (text: string) => {
 }
 
 
-const formatToUnit = (value: number, unit: string) => {
+const formatToUnit = (value: number, unit: string, hidePrefix = false, splitResult = false) => {
   let diviser = 1000;
   let prefix = ' k';
 
   if (value > 100000) {
       diviser *= 1000;
-      prefix = ' M';
+      prefix = ' m';
   }
   let newValue : any = value / diviser;
   newValue = newValue.toFixed(2);
   newValue = String(newValue).replace('.', ',');
 
+  prefix = (hidePrefix) ? '' : prefix;
+
+  if (splitResult) {
+    return [newValue, prefix + unit];
+  }
+
   return newValue + prefix + unit;
 }
 
-export default { capitalize, formatToUnit };
+const formatToReal = (value: number) => {
+  let money = String(value);
+  money = money.replace('.', ',');
+
+  return money;
+}
+
+export default { capitalize, formatToUnit, formatToReal };

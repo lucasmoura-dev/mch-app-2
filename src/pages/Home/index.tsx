@@ -6,6 +6,8 @@ import {
   useFocusEffect,
 } from '@react-navigation/native';
 
+import { DateTime, Settings } from 'luxon';
+
 import { Text, View } from 'react-native';
 
 import { DrawerScreenProps } from '@react-navigation/drawer';
@@ -34,6 +36,7 @@ import ChipList from '../../components/ChipList';
 import CardList from '../../components/CardList';
 
 const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
+  Settings.defaultLocale = 'pt';
   const [selected, setSelected] = useState('status');
   const [cardsData, setCardsData] = useState({
     cities: [],
@@ -81,7 +84,7 @@ const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
       return;
     }
 
-    const {
+    let {
       online,
       offline,
       generation_today: generationToday,
@@ -91,6 +94,15 @@ const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
       cities,
       inverter_brands: inverterBrands,
     } = response.data;
+
+    generationToday = locale.formatToUnit(generationToday, '', true);
+    generationTotal = locale.formatToUnit(generationTotal, '', true);
+    economy = locale.formatToReal(economy);
+    /*locale.formatToUnit(plant.generation_today, 'Wh'), // Hoje
+    locale.formatToUnit(plant.power_current, 'W'), // Potência atual
+    locale.formatToUnit(plant.generation_total, 'Wh'), // Total
+    locale.formatToUnit(plant.power_total, 'W'), // Capacidade*/
+
 
     setHeaderData({ ...headerData, generationToday, generationTotal, economy });
 
@@ -111,32 +123,27 @@ const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
     };
 
     const cardsCities = cities.map(({ name, count: plants, generation_today: energyValue, generation_total}) => {
-      /*"name": "uberlândia",
-      "count": 1,
-      "generation_today": 32201,
-      "generation_total": 921700*/
+      const energyFullValue = locale.formatToUnit(energyValue, 'Wh', false, true);
+
       return {
         name,
         title: name,
         background: '#080230',
         plants,
-        energyValue,
-        energyUnit: 'kWh',
+        energyValue: energyFullValue[0],
+        energyUnit: energyFullValue[1],
       };
     });
 
     const cardsInverters = inverterBrands.map(({ name, count: plants, generation_today: energyValue, generation_total}) => {
-      /*"name": "uberlândia",
-      "count": 1,
-      "generation_today": 32201,
-      "generation_total": 921700*/
+      const energyFullValue = locale.formatToUnit(energyValue, 'Wh', false, true);
       return {
         name,
         title: name,
         background: '#000000',
         plants,
-        energyValue,
-        energyUnit: 'kWh',
+        energyValue: energyFullValue[0],
+        energyUnit: energyFullValue[1],
       };
     });
 
@@ -145,93 +152,6 @@ const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
 
     console.log(online, offline, generationToday);
   }
-
-  /*cardsData['cities'] = [
-    {
-      name: 'ituiutaba',
-      title: 'Ituiutaba',
-      background: '#080230',
-      plants: 132,
-      energyValue: 853,
-      energyUnit: 'kWh',
-    },
-    {
-      name: 'santa vitória',
-      title: 'Santa Vitória',
-      background: '#080230',
-      plants: 19,
-      energyValue: 349,
-      energyUnit: 'kWh',
-    },
-    {
-      name: 'gurinhatã',
-      title: 'Gurinhatã',
-      background: '#080230',
-      plants: 13,
-      energyValue: 224,
-      energyUnit: 'kWh',
-    },
-    {
-      name: 'capinópolis',
-      title: 'Capinópolis',
-      background: '#080230',
-      plants: 10,
-      energyValue: 89,
-      energyUnit: 'kWh',
-    },
-    {
-      name: 'gurinhatã',
-      title: 'Gurinhatã',
-      background: '#080230',
-      plants: 7,
-      en0ergyValue: 78,
-      energyUnit: 'kWh',
-    },
-  ];
-
-  cardsData['status'] = [
-    {
-      name: '1',
-      footer: 'Online',
-      icon: 'wifi',
-      background: '#00BE8A',
-      title: 178,
-    },
-    {
-      name: '0',
-      footer: 'Offline',
-      icon: 'wifi-off',
-      background: '#E95567',
-      title: 3,
-    },
-  ];
-
-  cardsData['brands'] = [
-    {
-      name: 'growatt',
-      title: 'Growatt',
-      background: '#000000',
-      plants: 147,
-      energyValue: 30,
-      energyUnit: 'mWh',
-    },
-    {
-      name: 'fronius',
-      title: 'Fronius',
-      background: '#000000',
-      plants: 19,
-      energyValue: 20,
-      energyUnit: 'mWh',
-    },
-    {
-      name: 'sma',
-      title: 'SMA',
-      background: '#000000',
-      plants: 15,
-      energyValue: 6,
-      energyUnit: 'mWh',
-    },
-  ];*/
 
   interface SearchParams {
     brand?: string;
