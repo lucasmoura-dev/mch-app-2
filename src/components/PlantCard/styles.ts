@@ -1,5 +1,7 @@
 import styled from 'styled-components/native';
 
+import CapitalizedText from '../CapitalizedText';
+
 export const CardHeader = styled.View`
     flex-direction: row;
     align-self: stretch;
@@ -33,7 +35,8 @@ export const InfoValue = styled(InfoText)`
 //     font-size: 10px;
 // `;
 
-export const Title = styled(InfoText)`
+export const Title = styled(CapitalizedText)`
+    color: #FFFFFF;
     font-weight: bold;
     font-size: 16px;
 `;
