@@ -1,8 +1,17 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+
+import {
+  useNavigation,
+  useRoute,
+  useFocusEffect,
+} from '@react-navigation/native';
 
 import { Text, View } from 'react-native';
 
 import { DrawerScreenProps } from '@react-navigation/drawer';
+
+import api from '../../services/api';
+import locale from '../../services/locale';
 
 type RootStackParamList = {
   Home: undefined;
@@ -26,6 +35,17 @@ import CardList from '../../components/CardList';
 
 const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
   const [selected, setSelected] = useState('status');
+  const [cardsData, setCardsData] = useState({
+    cities: [],
+    status: [],
+    brands: [],
+  });
+  const [headerData, setHeaderData] = useState({
+    username: 'Jéssica',
+    generationToday: 0,
+    generationTotal: 0,
+    economy: 0,
+  });
 
   const buttons = [
     { id: 'status', title: 'Status' },
@@ -42,9 +62,91 @@ const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
     status: object[];
     brands: object[];
   };
-  const cardsData: cardCollectionProps = { cities: [], status: [], brands: [] };
+  //const cardsData: cardCollectionProps = { cities: [], status: [], brands: [] };
 
-  cardsData['cities'] = [
+  useFocusEffect(
+    React.useCallback(() => {
+      loadDashboardData();
+    }, []),
+  );
+
+  async function loadDashboardData() {
+    let response: any = {};
+
+    try {
+      // console.log(searchParams);
+      response = await api.get('dashboard');
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+
+    const {
+      online,
+      offline,
+      generation_today: generationToday,
+      generation_total: generationTotal,
+      economy,
+      plants_total,
+      cities,
+      inverter_brands: inverterBrands,
+    } = response.data;
+
+    setHeaderData({ ...headerData, generationToday, generationTotal, economy });
+
+    const cardOnline = {
+      name: '1',
+      footer: 'Online',
+      icon: 'wifi',
+      background: '#00BE8A',
+      title: online,
+    };
+
+    const cardOffline = {
+      name: '0',
+      footer: 'Offline',
+      icon: 'wifi-off',
+      background: '#E95567',
+      title: offline,
+    };
+
+    const cardsCities = cities.map(({ name, count: plants, generation_today: energyValue, generation_total}) => {
+      /*"name": "uberlândia",
+      "count": 1,
+      "generation_today": 32201,
+      "generation_total": 921700*/
+      return {
+        name,
+        title: name,
+        background: '#080230',
+        plants,
+        energyValue,
+        energyUnit: 'kWh',
+      };
+    });
+
+    const cardsInverters = inverterBrands.map(({ name, count: plants, generation_today: energyValue, generation_total}) => {
+      /*"name": "uberlândia",
+      "count": 1,
+      "generation_today": 32201,
+      "generation_total": 921700*/
+      return {
+        name,
+        title: name,
+        background: '#000000',
+        plants,
+        energyValue,
+        energyUnit: 'kWh',
+      };
+    });
+
+
+    setCardsData({ status: [cardOnline, cardOffline], cities: cardsCities, brands: cardsInverters });
+
+    console.log(online, offline, generationToday);
+  }
+
+  /*cardsData['cities'] = [
     {
       name: 'ituiutaba',
       title: 'Ituiutaba',
@@ -129,7 +231,7 @@ const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
       energyValue: 6,
       energyUnit: 'mWh',
     },
-  ];
+  ];*/
 
   interface SearchParams {
     brand?: string;
@@ -152,7 +254,13 @@ const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
 
   return (
     <Wrapper>
-      <MchHeader message="Olá" username="Jéssica" />
+      <MchHeader
+        message="Olá"
+        username={headerData.username}
+        generationToday={headerData.generationToday}
+        generationTotal={headerData.generationTotal}
+        economy={headerData.economy}
+      />
       <Container>
         <MchBlock
           title="Inversores e Plantas"

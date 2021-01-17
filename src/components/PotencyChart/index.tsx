@@ -18,7 +18,15 @@ import {
   SvgWrapper,
 } from './styles';
 
-const PotencyChart: React.FC = () => {
+type PotencyChartProps = {
+  value?: number | string,
+  unit?: string,
+}
+
+const PotencyChart: React.FC<PotencyChartProps> = ({ value, unit }) => {
+  value = value || '0';
+  unit = unit || 'mWh';
+
   return (
     <Container>
 
@@ -30,8 +38,8 @@ const PotencyChart: React.FC = () => {
           <LottieView source={Loading} autoPlay loop={true} speed={0.8}/>
 
           <Label>Hoje</Label>
-          <Value>109,4</Value>
-          <Unit>mWh</Unit>
+          <Value>{ value }</Value>
+          <Unit>{ unit }</Unit>
 
         </InnerCircle>
       </OuterCircle>

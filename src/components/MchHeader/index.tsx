@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   Container,
@@ -26,9 +26,18 @@ import PiggyBank from '../../images/svg/icon_piggy_bank';
 type HeaderProps = {
   message: string,
   username: string,
+  generationToday?: number | string,
+  generationTotal?: number | string,
+  economy: number,
 }
 
-const MchHeader: React.FC<HeaderProps> = ({ message, username }) => {
+const MchHeader: React.FC<HeaderProps> = ({ message, username, generationToday, generationTotal, economy }) => {
+  const [generationTotalUnit, setGenerationTotalUnit] = useState('kWh');
+  const [generationTodayUnit, setGenerationTodayUnit] = useState('mWh');
+  generationToday = generationToday || 0;
+  generationTotal = generationTotal || 0;
+  economy = economy || 0;
+
   return (
     <Container>
       <Background
@@ -42,7 +51,7 @@ const MchHeader: React.FC<HeaderProps> = ({ message, username }) => {
         </HeaderMessageContent>
         <HeaderBody>
           <ChartContent>
-            <PotencyChart />
+            <PotencyChart value={generationToday} unit={generationTodayUnit} />
           </ChartContent>
 
           <MiniCardsContent>
@@ -51,8 +60,8 @@ const MchHeader: React.FC<HeaderProps> = ({ message, username }) => {
                 <ChartIcon color="#FFFFFF" width={20} height={20} />
               </TotalIcon>
               <MiniCardInfos>
-                <InfoLabel>Total (kWh)</InfoLabel>
-                <InfoValue>75608</InfoValue>
+                <InfoLabel>Total ({generationTotalUnit})</InfoLabel>
+                <InfoValue>{ generationTotal }</InfoValue>
               </MiniCardInfos>
             </MiniCard>
 
@@ -62,7 +71,7 @@ const MchHeader: React.FC<HeaderProps> = ({ message, username }) => {
               </EconomyIcon>
               <MiniCardInfos>
                 <InfoLabel>Economia</InfoLabel>
-                <InfoValue>R$ 68.047,20</InfoValue>
+                <InfoValue>R$ { economy }</InfoValue>
               </MiniCardInfos>
             </MiniCard>
           </MiniCardsContent>
