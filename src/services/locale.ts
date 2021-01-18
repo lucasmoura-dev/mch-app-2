@@ -20,7 +20,7 @@ const formatToUnit = (value: number, unit: string, hidePrefix = false, splitResu
   prefix = (hidePrefix) ? '' : prefix;
 
   if (splitResult) {
-    return [newValue, prefix + unit];
+    return { value: newValue, unit: prefix + unit };
   }
 
   return newValue + prefix + unit;

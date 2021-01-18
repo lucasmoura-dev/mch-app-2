@@ -26,16 +26,16 @@ import PiggyBank from '../../images/svg/icon_piggy_bank';
 type HeaderProps = {
   message: string,
   username: string,
-  generationToday?: number | string,
-  generationTotal?: number | string,
+  generationToday?: { value: number | string, unit: string },
+  generationTotal?: { value: number | string, unit: string },
   economy: number,
 }
 
 const MchHeader: React.FC<HeaderProps> = ({ message, username, generationToday, generationTotal, economy }) => {
-  const [generationTotalUnit, setGenerationTotalUnit] = useState('kWh');
-  const [generationTodayUnit, setGenerationTodayUnit] = useState('mWh');
-  generationToday = generationToday || 0;
-  generationTotal = generationTotal || 0;
+  // const [generationTotalUnit, setGenerationTotalUnit] = useState('kWh');
+  // const [generationTodayUnit, setGenerationTodayUnit] = useState('mWh');
+  generationToday = generationToday || { value: 0, unit: 'mWh' };
+  generationTotal = generationTotal || { value: 0, unit: 'mWh' }
   economy = economy || 0;
 
   return (
@@ -51,7 +51,7 @@ const MchHeader: React.FC<HeaderProps> = ({ message, username, generationToday, 
         </HeaderMessageContent>
         <HeaderBody>
           <ChartContent>
-            <PotencyChart value={generationToday} unit={generationTodayUnit} />
+            <PotencyChart value={generationToday.value} unit={generationToday.unit} />
           </ChartContent>
 
           <MiniCardsContent>
@@ -60,8 +60,8 @@ const MchHeader: React.FC<HeaderProps> = ({ message, username, generationToday, 
                 <ChartIcon color="#FFFFFF" width={20} height={20} />
               </TotalIcon>
               <MiniCardInfos>
-                <InfoLabel>Total ({generationTotalUnit})</InfoLabel>
-                <InfoValue>{ generationTotal }</InfoValue>
+                <InfoLabel>Total ({generationTotal.unit})</InfoLabel>
+                <InfoValue>{ generationTotal.value }</InfoValue>
               </MiniCardInfos>
             </MiniCard>
 

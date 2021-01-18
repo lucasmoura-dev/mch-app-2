@@ -45,10 +45,11 @@ const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
   });
   const [headerData, setHeaderData] = useState({
     username: 'Jéssica',
-    generationToday: 0,
-    generationTotal: 0,
+    generationToday: { value: 0, unit: 'mWh' },
+    generationTotal: { value: 0, unit: 'mWh' },
     economy: 0,
   });
+  const [totalPlants, setTotalPlants] = useState('0');
 
   const buttons = [
     { id: 'status', title: 'Status' },
@@ -90,20 +91,16 @@ const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
       generation_today: generationToday,
       generation_total: generationTotal,
       economy,
-      plants_total,
+      plants_total: plantsTotal,
       cities,
       inverter_brands: inverterBrands,
     } = response.data;
 
-    generationToday = locale.formatToUnit(generationToday, '', true);
-    generationTotal = locale.formatToUnit(generationTotal, '', true);
+    generationToday = locale.formatToUnit(generationToday, 'Wh', false, true);
+    generationTotal = locale.formatToUnit(generationTotal, 'Wh', false, true);
     economy = locale.formatToReal(economy);
-    /*locale.formatToUnit(plant.generation_today, 'Wh'), // Hoje
-    locale.formatToUnit(plant.power_current, 'W'), // Potência atual
-    locale.formatToUnit(plant.generation_total, 'Wh'), // Total
-    locale.formatToUnit(plant.power_total, 'W'), // Capacidade*/
 
-
+    setTotalPlants(plantsTotal);
     setHeaderData({ ...headerData, generationToday, generationTotal, economy });
 
     const cardOnline = {
@@ -130,8 +127,8 @@ const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
         title: name,
         background: '#080230',
         plants,
-        energyValue: energyFullValue[0],
-        energyUnit: energyFullValue[1],
+        energyValue: energyFullValue.value,
+        energyUnit: energyFullValue.unit,
       };
     });
 
@@ -142,8 +139,8 @@ const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
         title: name,
         background: '#000000',
         plants,
-        energyValue: energyFullValue[0],
-        energyUnit: energyFullValue[1],
+        energyValue: energyFullValue.value,
+        energyUnit: energyFullValue.unit,
       };
     });
 
@@ -184,7 +181,7 @@ const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
       <Container>
         <MchBlock
           title="Inversores e Plantas"
-          total={181}
+          total={totalPlants}
           onPressTotal={() => goToPlants({})}
         >
           <ChipList data={buttons} selectCallback={onChangeIndex} />
