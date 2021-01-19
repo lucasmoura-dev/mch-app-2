@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 
+import colors from '../../styles/colors';
+
 import {
   View,
   Text,
@@ -90,7 +92,7 @@ class Header extends PureComponent<HeaderPropsInterface, any> {
                         : 'arrow-up'
                     }
                     size={20}
-                    color="#0D134E"
+                    color={colors.primary}
                   />
                 )}
               </HeaderColumn>

@@ -182,8 +182,8 @@ const Plants: React.FC<ScreenProps> = ({ route, navigation }) => {
 
       const rowData = [
         plant.name, // Nome
-        // plant.online ? 'Online' : 'Offline',
-        <StatusIcon isOnline={plant.online} />,
+        // plant.online === true ? 'Online' : 'Offline',
+        <StatusIcon isOnline={plant.online === true} />,
         locale.formatToUnit(plant.generation_today, 'Wh'), // Hoje
         locale.formatToUnit(plant.power_current, 'W'), // Potência atual
         locale.formatToUnit(plant.generation_total, 'Wh'), // Total

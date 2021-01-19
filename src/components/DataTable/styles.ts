@@ -20,7 +20,7 @@ export const HeaderContent = styled.View`
     height: 40px;
     padding: 0 10px;
     border-bottom-width: 1px;
-    border-bottom-color: #0D134E;
+    border-bottom-color: ${colors.black};
 `;
 
 export const ColumnContainer = styled.TouchableOpacity`
@@ -57,11 +57,10 @@ export const TableContent = styled.View`
 export const RowContent = styled.View<RowContentProps>`
     flex-direction: row;
     height: 50px;
-    background-color: ${p => p.isAlternativeColor ? '#fbfbfc' : '#fff'};
+    background-color: ${p => p.isAlternativeColor ? '#fbfbfc' : colors.white};
     padding: 0 10px;
     border-top-color: #f2f3f5;
     border-top-width: 1px;
-    border-color: #2e88f0;
     border-radius: 6px;
 `;
 
