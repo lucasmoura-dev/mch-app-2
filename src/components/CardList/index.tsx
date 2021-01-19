@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, Text } from 'react-native';
+import { Dimensions, Text, ScrollView, FlatList } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import Card from '../Card';
 import PlantCard from '../../components/PlantCard';
@@ -51,16 +51,15 @@ const CardList: React.FC<CardListProps> = ({ data, isStatusCard, onPressCard }) 
   }
 
   return (
-    <Carousel
-        ref={(c) => { carousel = c; }}
-        data={data}
-        renderItem={renderCard}
-        sliderWidth={SLIDER_WIDTH}
-        itemWidth={160}
-        layout="default"
-        inactiveSlideOpacity={1}
-        inactiveSlideScale={1}
-        activeSlideAlignment="start"
+    <FlatList
+      data={data}
+      keyExtractor={(rowData, index) => String(index)}
+      onEndReachedThreshold={0.7}
+      showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}
+      contentContainerStyle={{ paddingBottom: 50 }}
+      renderItem={renderCard}
+      horizontal={true}
     />
   );
 };

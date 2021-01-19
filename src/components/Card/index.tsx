@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -18,6 +18,7 @@ type CardProps = {
 };
 
 const Card: React.FC<CardProps> = ({ children, footer, headerIcon, title, background, color, alignment, name, onPress }) => {
+  var [ isPress, setIsPress ] = React.useState(false);
 
   const renderHeaderIcon = () => {
     if (typeof headerIcon === 'string') {
@@ -45,7 +46,12 @@ const Card: React.FC<CardProps> = ({ children, footer, headerIcon, title, backgr
 
   return (
     <Container>
-      <Content background={background} alignment={alignment}  onPress={() => onPress && onPress(name)} >
+      <Content
+        background={background}
+        alignment={alignment}
+        onPress={() => onPress && onPress(name)}
+        activeOpacity={1}
+        >
         { children ? children : renderSimpleCard() }
       </Content>
     </Container>
