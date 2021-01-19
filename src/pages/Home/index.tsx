@@ -6,9 +6,11 @@ import {
   useFocusEffect,
 } from '@react-navigation/native';
 
+import colors from '../../styles/colors';
+
 import { DateTime, Settings } from 'luxon';
 
-import { Text, View } from 'react-native';
+import { Text, View, StatusBar } from 'react-native';
 
 import { DrawerScreenProps } from '@react-navigation/drawer';
 
@@ -34,14 +36,15 @@ import MchHeader from '../../components/MchHeader';
 import MchBlock from '../../components/MchBlock';
 import ChipList from '../../components/ChipList';
 import CardList from '../../components/CardList';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
   Settings.defaultLocale = 'pt';
   const [selected, setSelected] = useState('status');
   const [cardsData, setCardsData] = useState({
     cities: [],
-    status: []/*,
-    brands: [],*/
+    status: [] /*,
+    brands: [],*/,
   });
   const [headerData, setHeaderData] = useState({
     username: 'Jéssica',
@@ -119,18 +122,30 @@ const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
       title: offline,
     };
 
-    const cardsCities = cities.map(({ name, count: plants, generation_today: energyValue, generation_total}) => {
-      const energyFullValue = locale.formatToUnit(energyValue, 'Wh', false, true);
-
-      return {
+    const cardsCities = cities.map(
+      ({
         name,
-        title: name,
-        background: '#080230',
-        plants,
-        energyValue: energyFullValue.value,
-        energyUnit: energyFullValue.unit,
-      };
-    });
+        count: plants,
+        generation_today: energyValue,
+        generation_total,
+      }) => {
+        const energyFullValue = locale.formatToUnit(
+          energyValue,
+          'Wh',
+          false,
+          true,
+        );
+
+        return {
+          name,
+          title: name,
+          background: '#080230',
+          plants,
+          energyValue: energyFullValue.value,
+          energyUnit: energyFullValue.unit,
+        };
+      },
+    );
 
     /*const cardsInverters = inverterBrands.map(({ name, count: plants, generation_today: energyValue, generation_total}) => {
       const energyFullValue = locale.formatToUnit(energyValue, 'Wh', false, true);
@@ -144,8 +159,10 @@ const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
       };
     });*/
 
-
-    setCardsData({ status: [cardOnline, cardOffline], cities: cardsCities/*, brands: cardsInverters*/ });
+    setCardsData({
+      status: [cardOnline, cardOffline],
+      cities: cardsCities /*, brands: cardsInverters*/,
+    });
 
     console.log(online, offline, generationToday);
   }
@@ -171,6 +188,7 @@ const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
 
   return (
     <Wrapper>
+      <StatusBar barStyle="dark-content" backgroundColor={colors.secondaryBackground} />
       <MchHeader
         message="Olá"
         username={headerData.username}

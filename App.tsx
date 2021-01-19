@@ -29,7 +29,6 @@ export default function App() {
   return (
     <>
       <Routes />
-      <StatusBar style="dark" backgroundColor={colors.secondaryBackground}  />
     </>
   );
 }

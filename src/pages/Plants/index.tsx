@@ -8,8 +8,9 @@ import { DateTime, Settings } from 'luxon';
 
 import api from '../../services/api';
 import locale from '../../services/locale';
+import colors from '../../styles/colors';
 
-import { ToastAndroid, View, ActivityIndicator } from 'react-native';
+import { ToastAndroid, View, StatusBar } from 'react-native';
 
 import DataTable from '../../components/DataTable';
 import StatusIcon from '../../components/StatusIcon';
@@ -257,6 +258,7 @@ const Plants: React.FC<ScreenProps> = ({ route, navigation }) => {
 
   return (
     <Container>
+      <StatusBar barStyle="light-content" backgroundColor={colors.primary} />
       {/* <Text>Exibindo { plants.length } planta(s). Página { searchParams.page } de { totalPages }</Text> */}
 
       <FloatButton icon="filter" onPress={() => toggleFilterModal()} />
