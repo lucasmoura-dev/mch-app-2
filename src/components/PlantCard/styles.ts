@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import colors from '../../styles/colors';
 
 import CapitalizedText from '../CapitalizedText';
 
@@ -9,7 +10,7 @@ export const CardHeader = styled.View`
 `;
 
 export const InfoText = styled.Text`
-    color: #FFFFFF;
+    color: ${colors.black};
     font-size: 14px;
 `;
 
@@ -36,7 +37,7 @@ export const InfoValue = styled(InfoText)`
 // `;
 
 export const Title = styled(CapitalizedText)`
-    color: #FFFFFF;
+    color: ${colors.black};
     font-weight: bold;
     font-size: 16px;
 `;

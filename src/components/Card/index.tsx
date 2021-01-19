@@ -3,6 +3,7 @@ import { Text } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { HeaderContent, CardText, Container, Content } from './styles';
+import colors from '../../styles/colors';
 
 type CardProps = {
   // header?: JSX.Element,
@@ -20,7 +21,7 @@ const Card: React.FC<CardProps> = ({ children, footer, headerIcon, title, backgr
 
   const renderHeaderIcon = () => {
     if (typeof headerIcon === 'string') {
-      return <MaterialCommunityIcons name={headerIcon} size={20} color='white'/>
+      return <MaterialCommunityIcons name={headerIcon} size={20} color={background}/>
     }
   }
 

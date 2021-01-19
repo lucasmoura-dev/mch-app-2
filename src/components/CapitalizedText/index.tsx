@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Text } from 'react-native';
 
-const CapitalizedText: React.FC<any> = ({ children, ...props }) => {
+const CapitalizedText: React.FC<any> = ({ numberOfLines, children, ...props }) => {
   const capitalizeTheFirstLetterOfEachWord = (words) => {
     var separateWord = words.toLowerCase().split(' ');
     for (var i = 0; i < separateWord.length; i++) {
@@ -18,7 +18,7 @@ const CapitalizedText: React.FC<any> = ({ children, ...props }) => {
   let text = capitalizeTheFirstLetterOfEachWord(children);
 
 
-  return <Text {...props}>{text}</Text>;
+  return <Text {...props} numberOfLines={numberOfLines || undefined}>{text}</Text>;
 };
 
 export default CapitalizedText;

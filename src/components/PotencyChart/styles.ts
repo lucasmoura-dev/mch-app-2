@@ -8,31 +8,55 @@ export const Container = styled.View`
     /* justify-content: flex-start; */
 `;
 
-export const SvgWrapper = styled.View`
-    position: absolute;
+
+export const ChartContent = styled.View`
+  background-color: blue;
+
+`;
+
+export const LetterC = styled.ImageBackground`
+    flex: 1;
+    opacity: 1;
+    /* padding-left: 15px; */
+    width: 100px;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
 `;
 
 export const OuterCircle = styled.View`
-    height: 130px;
-    width: 130px;
-    /* background: #E6E4EE; */
-    border-radius: 65px;
+    height: 115px;
+    width: 80px;
     justify-content: center;
     align-items: center;
 
-    /* margin-left: 10px; */
-    /* margin-top: 0px; */
 `;
 
 export const InnerCircle = styled.View`
-    background: #FFF;
-    height: 110px;
-    width: 110px;
-    flex: 0 0 auto;
-    border-radius:  55px;
+    width: 85px;
+    height: 85px;
+    /* width: 50px; */
+    /* flex: 0 0 auto; */
+    border-radius: 45px;
     align-items: center;
     justify-content: center;
-`
+
+    /* background-color: orange; */
+
+    /* padding: 2px; */
+    margin-left: 13px;
+`;
+
+export const TextContent = styled.View`
+  /* flex: 1; */
+  /* height: 75px; */
+  /* height: 60px; */
+  justify-content: center;
+  align-items: center;
+  /* background-color: pink; */
+`;
 
 export const InnerText = styled.Text`
     font-family: roboto_400;
@@ -41,15 +65,17 @@ export const InnerText = styled.Text`
 
 export const Label = styled(InnerText)`
     font-size: 16px;
+    color: ${colors.inactive};
 `
 
 export const Value = styled(InnerText)`
     margin-top: 5px;
     font-family: roboto_700;
-    font-size: 22px;
+    font-size: 16px;
 `
 
 export const Unit = styled(InnerText)`
     margin-top: 5px;
+    color: ${colors.inactive};
 `
 

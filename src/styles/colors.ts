@@ -1,21 +1,22 @@
 export default {
     // primary: '#252C71',
-    primary: '#305EDE',
-    black: '#000014',
+    primary: '#BD2F2F',
+    black: '#000000',
     white: '#FFFF',
-    secondaryBackground: '#E7E7F0',
-    inactive: '#9791A2',
+    secondaryBackground: '#EEF2F3',
+    inactive: '#888888',
     tag: '#323235',
     green: '#00BE8A',
     red: '#E95567',
+    blue: '#0A96CC',
     purple: '#bf94ff',
   };
-  
+
   /**
    * Auto Theme Challenge:
    *
    * Change App theme based on device theme.
-   * 
+   *
    light: {
      primary: '#f7f7f8',
      black: '#000014',
@@ -35,4 +36,3 @@ export default {
      purple: '#bf94ff',
    }
    */
-  

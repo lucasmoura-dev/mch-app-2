@@ -29,7 +29,7 @@ export default function App() {
   return (
     <>
       <Routes />
-      <StatusBar style="light" backgroundColor={colors.primary}  />
+      <StatusBar style="dark" backgroundColor={colors.secondaryBackground}  />
     </>
   );
 }

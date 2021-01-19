@@ -13,29 +13,36 @@ import {
   EconomyIcon,
   HeaderMessageContent,
   HeaderBody,
-  MiniCardsContent
+  MiniCardsContent,
+  LogoContent,
+  MCHLogoText,
 } from './styles';
 
 import NatureBackground from '../../images/path4349.png';
 import PotencyChart from '../PotencyChart';
 
-
 import ChartIcon from '../../images/svg/icon_chart';
 import PiggyBank from '../../images/svg/icon_piggy_bank';
 
 type HeaderProps = {
-  message: string,
-  username: string,
-  generationToday?: { value: number | string, unit: string },
-  generationTotal?: { value: number | string, unit: string },
-  economy: number,
-}
+  message: string;
+  username: string;
+  generationToday?: { value: number | string; unit: string };
+  generationTotal?: { value: number | string; unit: string };
+  economy: number;
+};
 
-const MchHeader: React.FC<HeaderProps> = ({ message, username, generationToday, generationTotal, economy }) => {
+const MchHeader: React.FC<HeaderProps> = ({
+  message,
+  username,
+  generationToday,
+  generationTotal,
+  economy,
+}) => {
   // const [generationTotalUnit, setGenerationTotalUnit] = useState('kWh');
   // const [generationTodayUnit, setGenerationTodayUnit] = useState('mWh');
   generationToday = generationToday || { value: 0, unit: 'mWh' };
-  generationTotal = generationTotal || { value: 0, unit: 'mWh' }
+  generationTotal = generationTotal || { value: 0, unit: 'mWh' };
   economy = economy || 0;
 
   return (
@@ -45,14 +52,21 @@ const MchHeader: React.FC<HeaderProps> = ({ message, username, generationToday, 
         imageStyle={{ opacity: 0.1, resizeMode: 'stretch' }}
       >
         <HeaderMessageContent>
-          <HeaderMessage>
+          {/* <HeaderMessage>
                 { message }, { username }
-          </HeaderMessage>
+          </HeaderMessage> */}
         </HeaderMessageContent>
         <HeaderBody>
-          <ChartContent>
-            <PotencyChart value={generationToday.value} unit={generationToday.unit} />
-          </ChartContent>
+          <LogoContent>
+            <MCHLogoText>M</MCHLogoText>
+            <ChartContent>
+              <PotencyChart
+                value={generationToday.value}
+                unit={generationToday.unit}
+              />
+            </ChartContent>
+            <MCHLogoText>H</MCHLogoText>
+          </LogoContent>
 
           <MiniCardsContent>
             <MiniCard>
@@ -61,23 +75,20 @@ const MchHeader: React.FC<HeaderProps> = ({ message, username, generationToday, 
               </TotalIcon>
               <MiniCardInfos>
                 <InfoLabel>Total ({generationTotal.unit})</InfoLabel>
-                <InfoValue>{ generationTotal.value }</InfoValue>
+                <InfoValue>{generationTotal.value}</InfoValue>
               </MiniCardInfos>
             </MiniCard>
 
             <MiniCard>
               <EconomyIcon>
-                <PiggyBank color="#FFFFFF"/>
+                <PiggyBank color="#FFFFFF" />
               </EconomyIcon>
               <MiniCardInfos>
                 <InfoLabel>Economia</InfoLabel>
-                <InfoValue>R$ { economy }</InfoValue>
+                <InfoValue>R$ 666,1 M</InfoValue>
               </MiniCardInfos>
             </MiniCard>
           </MiniCardsContent>
-
-
-
         </HeaderBody>
       </Background>
     </Container>

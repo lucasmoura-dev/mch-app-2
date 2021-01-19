@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, Image } from 'react-native';
 
 import { CardHeader, FirstInfo, Title, Energy, InfoValue } from './styles';
-// import { CardHeader, FirstInfo, Title, Energy, InfoValue } from './styles';
+import colors from '../../styles/colors';
 
 import Card from '../Card';
 
@@ -30,7 +30,7 @@ const PlantCard: React.FC<CardProps> = ({ plants, energy, title, onPress, name, 
     <Card background="#1F211D" alignment="center" {...props} onPress={onPress} name={name}>
       <CardHeader>
         <FirstInfo>
-          <PlantsIcon color="#FFFFFF" width={20} />
+          <PlantsIcon color={colors.black} width={20} />
           <InfoValue>{ plants }</InfoValue>
         </FirstInfo>
 
@@ -41,7 +41,7 @@ const PlantCard: React.FC<CardProps> = ({ plants, energy, title, onPress, name, 
         </WeatherInfo> */}
       </CardHeader>
 
-      <Title>{ title }</Title>
+      <Title numberOfLines={1}>{ title }</Title>
 
       <Energy>{ energy.value + ' ' + energy.unit }</Energy>
     </Card>

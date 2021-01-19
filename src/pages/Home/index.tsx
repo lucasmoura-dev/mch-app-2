@@ -40,8 +40,8 @@ const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
   const [selected, setSelected] = useState('status');
   const [cardsData, setCardsData] = useState({
     cities: [],
-    status: [],
-    brands: [],
+    status: []/*,
+    brands: [],*/
   });
   const [headerData, setHeaderData] = useState({
     username: 'Jéssica',
@@ -54,7 +54,7 @@ const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
   const buttons = [
     { id: 'status', title: 'Status' },
     { id: 'cities', title: 'Cidades' },
-    { id: 'brands', title: 'Marcas' },
+    /*{ id: 'brands', title: 'Marcas' },*/
   ];
 
   const onChangeIndex = (selected: string) => {
@@ -132,7 +132,7 @@ const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
       };
     });
 
-    const cardsInverters = inverterBrands.map(({ name, count: plants, generation_today: energyValue, generation_total}) => {
+    /*const cardsInverters = inverterBrands.map(({ name, count: plants, generation_today: energyValue, generation_total}) => {
       const energyFullValue = locale.formatToUnit(energyValue, 'Wh', false, true);
       return {
         name,
@@ -142,10 +142,10 @@ const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
         energyValue: energyFullValue.value,
         energyUnit: energyFullValue.unit,
       };
-    });
+    });*/
 
 
-    setCardsData({ status: [cardOnline, cardOffline], cities: cardsCities, brands: cardsInverters });
+    setCardsData({ status: [cardOnline, cardOffline], cities: cardsCities/*, brands: cardsInverters*/ });
 
     console.log(online, offline, generationToday);
   }
@@ -180,7 +180,7 @@ const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
       />
       <Container>
         <MchBlock
-          title="Inversores e Plantas"
+          title="Plantas"
           total={totalPlants}
           onPressTotal={() => goToPlants({})}
         >
