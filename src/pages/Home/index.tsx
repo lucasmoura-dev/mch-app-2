@@ -10,12 +10,14 @@ import colors from '../../styles/colors';
 
 import { DateTime, Settings } from 'luxon';
 
-import { Text, View, StatusBar } from 'react-native';
+import { Text, View, StatusBar, Dimensions } from 'react-native';
 
 import { DrawerScreenProps } from '@react-navigation/drawer';
 
 import api from '../../services/api';
 import locale from '../../services/locale';
+
+
 
 type RootStackParamList = {
   Home: undefined;
@@ -36,7 +38,7 @@ import MchHeader from '../../components/MchHeader';
 import MchBlock from '../../components/MchBlock';
 import ChipList from '../../components/ChipList';
 import CardList from '../../components/CardList';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import Chart from '../../components/Chart';
 
 const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
   Settings.defaultLocale = 'pt';
@@ -188,7 +190,10 @@ const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
 
   return (
     <Wrapper>
-      <StatusBar barStyle="dark-content" backgroundColor={colors.secondaryBackground} />
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor={colors.secondaryBackground}
+      />
       <MchHeader
         message="Olá"
         username={headerData.username}
@@ -211,6 +216,10 @@ const Home: React.FC<ScreenProps> = ({ route, navigation }) => {
               onPressCard={name => onPressCard(selected, name)}
             />
           </CardsContent>
+        </MchBlock>
+
+        <MchBlock title="Estatísticas">
+          {/* <Chart /> */}
         </MchBlock>
       </Container>
     </Wrapper>

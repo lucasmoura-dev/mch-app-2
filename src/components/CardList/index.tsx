@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, Text, ScrollView, FlatList } from 'react-native';
+import { Dimensions, Text, ScrollView, FlatList, View } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import Card from '../Card';
 import PlantCard from '../../components/PlantCard';
@@ -7,18 +7,20 @@ import PlantCard from '../../components/PlantCard';
 import { Container } from './styles';
 const SLIDER_WIDTH = Dimensions.get('window').width;
 
-
 type CardListProps = {
-  data: Array<any>,
-  isStatusCard?: boolean,
-  onPressCard?: any,
+  data: Array<any>;
+  isStatusCard?: boolean;
+  onPressCard?: any;
 };
 
-const CardList: React.FC<CardListProps> = ({ data, isStatusCard, onPressCard }) => {
+const CardList: React.FC<CardListProps> = ({
+  data,
+  isStatusCard,
+  onPressCard,
+}) => {
   let carousel = null;
 
   const renderStatusCard = ({ item }: any) => {
-
     return (
       <Card
         headerIcon={item.icon}
@@ -32,7 +34,6 @@ const CardList: React.FC<CardListProps> = ({ data, isStatusCard, onPressCard }) 
   };
 
   const renderPlantCard = ({ item }: any) => {
-
     return (
       <PlantCard
         title={item.title}
@@ -48,7 +49,7 @@ const CardList: React.FC<CardListProps> = ({ data, isStatusCard, onPressCard }) 
   const renderCard = (data: any) => {
     let render = isStatusCard ? renderStatusCard : renderPlantCard;
     return render(data);
-  }
+  };
 
   return (
     <FlatList
@@ -57,7 +58,6 @@ const CardList: React.FC<CardListProps> = ({ data, isStatusCard, onPressCard }) 
       onEndReachedThreshold={0.7}
       showsVerticalScrollIndicator={false}
       showsHorizontalScrollIndicator={false}
-      contentContainerStyle={{ paddingBottom: 50 }}
       renderItem={renderCard}
       horizontal={true}
     />
